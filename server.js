@@ -6,8 +6,8 @@ var mongoose = require("mongoose");
 var path = require("path");
 
 // Requiring Note and Article models
-var Note = require("./models/Note.js");
-var Article = require("./models/Article.js");
+var Note = require("./models/Note");
+var Article = require("./models/Article");
 
 // Scraping tools
 var request = require("request");
@@ -101,7 +101,7 @@ app.get("/scrape", function(req, res) {
         summary = $(this).find("href").text();
       };
 
-      result.title = $(this).find("h2").text();
+      result.title = $(this).find("h3").text();
       result.summary = summary;
       result.link = "http://time.com/section/sports/" + $(this).find("a").attr("href");
 
