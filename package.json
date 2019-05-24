@@ -1,21 +1,23 @@
 {
-  "name": "mongo-scraper",
+  "name": "MongoScraper",
   "version": "1.0.0",
-  "description": "Web app that lets users leave comments on the latest news.",
+  "description": "## Overview An app that scrapes articles from the New York Times website and lets users save articles and leave comments on the latest news.",
   "main": "server.js",
+  "dependencies": {},
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Linette Hsu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesssd/MongoScraper.git"
+  },
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.17.2",
-    "cheerio": "^1.0.0-rc.1",
-    "express": "^4.15.3",
-    "express-handlebars": "^3.0.0",
-    "mongoose": "^4.10.6",
-    "morgan": "^1.7.0",
-    "request": "^2.81.0"
-  }
+  "bugs": {
+    "url": "https://github.com/jamesssd/MongoScraper/issues"
+  },
+  "homepage": "https://github.com/jamesssd/MongoScraper#readme"
 }
