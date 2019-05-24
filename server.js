@@ -6,8 +6,8 @@ var mongoose = require("mongoose");
 var path = require("path");
 
 // Requiring Note and Article models
-var Note = require("./models/Note");
-var Article = require("./models/Article");
+var Note = require("./models/Note.js");
+var Article = require("./models/Article.js");
 
 // Scraping tools
 var request = require("request");
@@ -17,7 +17,7 @@ var cheerio = require("cheerio");
 mongoose.Promise = Promise;
 
 //Define port
-var port = process.env.PORT || 3006
+var port = process.env.PORT || 3000
 
 // Initialize Express
 var app = express();
@@ -41,10 +41,8 @@ app.engine("handlebars", exphbs({
 app.set("view engine", "handlebars");
 
 // Database configuration with mongoose
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines"
-
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
-
+mongoose.connect("mongodb://heroku_jmv816f9:5j1nd4taq42hi29bfm5hobeujd@ds133192.mlab.com:33192/heroku_jmv816f9");
+//mongoose.connect("mongodb://localhost/mongoscraper");
 var db = mongoose.connection;
 
 // Show any mongoose errors
@@ -83,11 +81,11 @@ app.get("/saved", function(req, res) {
 // A GET request to scrape the echojs website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
-  request("http://time.com/section/sports/", function(error, response, html) {
+  request("https://www.nytimes.com/", function(error, response, html) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(html);
     // Now, we grab every h2 within an article tag, and do the following:
-    $("#h3_class").each(function(i, element) {
+    $("article").each(function(i, element) {
 
       // Save an empty result object
       var result = {};
@@ -95,15 +93,15 @@ app.get("/scrape", function(req, res) {
       // Add the title and summary of every link, and save them as properties of the result object
 
       summary = ""
-      if ($(this).find("h3_class").length) {
-        summary = $(this).find("a").first().text();
+      if ($(this).find("ul").length) {
+        summary = $(this).find("li").first().text();
       } else {
-        summary = $(this).find("href").text();
+        summary = $(this).find("p").text();
       };
 
-      result.title = $(this).find("h3").text();
+      result.title = $(this).find("h2").text();
       result.summary = summary;
-      result.link = "http://time.com/section/sports/" + $(this).find("a").attr("href");
+      result.link = "https://www.nytimes.com" + $(this).find("a").attr("href");
 
       // Using our Article model, create a new entry
       // This effectively passes the result object to the entry (and the title and link)
@@ -263,3 +261,4 @@ app.delete("/notes/delete/:note_id/:article_id", function(req, res) {
 app.listen(port, function() {
   console.log("App running on port " + port);
 });
+
