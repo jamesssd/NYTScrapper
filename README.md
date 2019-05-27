@@ -3,7 +3,7 @@
 ## Overview
 An app that scrapes articles from the New York Times website and lets users save articles and leave comments on the latest news.
 
-![Website](https://github.com/llh914/Mongo-Scraper/blob/master/public/assets/images/nyt.png)
+![Website](https://user-images.githubusercontent.com/47347463/58388961-7a1f9900-7fda-11e9-9122-1978c24aeeef.png)
 
 ## How It Works
 - Scrape articles by clicking the "Scrape Articles" button.
@@ -12,7 +12,7 @@ An app that scrapes articles from the New York Times website and lets users save
 - Comments can be added on saved articles by clicking the "Add a Note" button.
 - Saved articles can be deleted by clicking the "Delete" button.
 
-[Check out the App](https://sheltered-gorge-91026.herokuapp.com/)
+[Check out the App](https://nytscrapperjd.herokuapp.com/)
 
 ## Technologies Used
 - Node.js
