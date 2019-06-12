@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "## Overview An app that scrapes articles from the New York Times website and lets users save articles and leave comments on the latest news.",
   "main": "server.js",
+  "engines": {
+    "node": "10.15.1"
+  },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
